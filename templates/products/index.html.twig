@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home!{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <h1 class="h3 mb-3 font-weight-normal">This is products page</h1>
+
+    <div class="product-list">
+        {% for product in products %}
+            {% if product.image %} <a href="/products/{{ product.id }}"><img src="/images/{{ product.image }}" alt=""></a> {% endif %}
+            <h2> <a href="/products/{{ product.id }}">{{ product.name }}</a></h2>
+            &{{ product.price }}
+        {% endfor %}
+    </div>
+{% endblock %}
