@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home!{% endblock %}
+
+{% block body %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="breadcrumbs">
+        <a href="/products">Products</a>
+    </div>
+
+    <h1>Basket</h1>
+
+    <div class="basket">
+        {% for product in basket %}
+            <div>  {% if product.image %} <a href="/products/{{ product.id }}"><img src="/images/{{ product.image }}" alt=""></a> {% endif %}</div>
+            <div>{{ product.name }}</div>
+            <div>{{ product.price | number_format(2) }}</div>
+            <div>
+                <form method="post">
+                    <button>Remove</button>
+                    <input type="hidden" name="id" value="{{ product.id }}">
+                </form>
+            </div>
+        {% endfor %}
+        <div></div>
+        <div class="total">Total</div>
+        <div class="total"> $ {{ total | number_format(2) }}</div>
+    </div>
+
+{#    <form action="checkout" class="basket-form">
+        <button>Proceed to checkout</button>
+    </form>#}
+{% endblock %}

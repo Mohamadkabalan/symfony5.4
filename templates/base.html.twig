@@ -15,6 +15,10 @@
         {% endblock %}
     </head>
     <body>
+       {% if app.session.get('basket') %}
+            <a href="/basket"> View basket</a>
+       {% endif %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

@@ -18,6 +18,13 @@
             {% if product.image %} <a href="/products/{{ product.id }}"><img src="/images/{{ product.image }}" alt=""></a> {% endif %}
             <h2> <a href="/products/{{ product.id }}">{{ product.name }}</a></h2>
             &{{ product.price }}
+      <form method="post">
+          {% if inBasket %}
+              <button disabled>Added to basket</button>
+              {% else %}
+              <button>Add to basket</button>
+          {% endif %}
+      </form>
     </div>
 
     {% if product.description %} <a>{{ product.description }}</a> {% endif %}
