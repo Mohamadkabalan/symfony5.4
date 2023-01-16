@@ -30,6 +30,17 @@ services:
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
       - changeme
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+    depends_on:
+      - db
+    networks:
+      - changeme
   nginx:
     image: nginx:1.17-alpine
     container_name: changeme-nginx
